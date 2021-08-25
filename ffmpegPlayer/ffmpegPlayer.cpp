@@ -12,6 +12,7 @@ ffmpegPlayer::ffmpegPlayer(QWidget *parent)
 	connect(&m_ffplayer, &FFPlayer::sig_GetOneFrame, ui.label, [this](QImage image) {
 		auto temp = image.scaledToHeight(height(), Qt::SmoothTransformation);
 		ui.label->setPixmap(QPixmap::fromImage(temp));
+		update();
 	});
 	//回放进度条
 	m_playerSlider.setParent(this);
