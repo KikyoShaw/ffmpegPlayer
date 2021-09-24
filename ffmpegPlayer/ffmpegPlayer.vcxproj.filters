@@ -52,6 +52,9 @@
     <ClCompile Include="ff\vplayerslider.cpp">
       <Filter>ff</Filter>
     </ClCompile>
+    <ClCompile Include="ff\videoFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ff\ffplayer.h">
@@ -62,6 +65,9 @@
     </QtMoc>
     <QtMoc Include="ff\vplayerslider.h">
       <Filter>ff</Filter>
+    </QtMoc>
+    <QtMoc Include="ff\videoFrame.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

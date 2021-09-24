@@ -109,6 +109,7 @@
     <ClCompile Include="ffmpegPlayer.cpp" />
     <ClCompile Include="ff\ffplayer.cpp" />
     <ClCompile Include="ff\myaudio.cpp" />
+    <ClCompile Include="ff\videoFrame.cpp" />
     <ClCompile Include="ff\vplayerslider.cpp" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="ff\vplayerslider.ui" />
@@ -121,6 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ff\vplayerslider.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ff\videoFrame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
