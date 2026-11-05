@@ -1,5 +1,6 @@
-#pragma once
+Ôªø#pragma once
 
+#include <QImage>
 #include <QWidget>
 #include "ui_ffmpegPlayer.h"
 #include "vplayerslider.h"
@@ -7,28 +8,39 @@
 
 class ffmpegPlayer : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	ffmpegPlayer(QWidget *parent = Q_NULLPTR);
-	~ffmpegPlayer();
+    explicit ffmpegPlayer(QWidget *parent = Q_NULLPTR);
+    ~ffmpegPlayer();
 
-	void playStream(const QString &url);
-	void stopStream(const QString &url);
+    void playStream(const QString &source);
+    void stopStream();
 
 protected:
-	virtual void resizeEvent(QResizeEvent *event);
-	virtual void closeEvent(QCloseEvent *event);
-	virtual void mouseDoubleClickEvent(QMouseEvent *event);
-	virtual void keyReleaseEvent(QKeyEvent *event);
+    bool eventFilter(QObject *watched, QEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 
 private:
-	void sltPlayVideo(const QString &url);
+    void openFile();
+    void playSourceFromEditor();
+    void setPlaybackState(int state);
+    void updateStatus();
+    void toggleFullScreen();
+    void seekBy(qint64 offsetMs);
 
-private:
-	Ui::player ui;
-	//ªÿ∑≈π‹¿Ì
-	FFPlayer m_ffplayer;
-	//ªÿ∑≈Ω¯∂»Ãı
-	VPlayerSlider m_playerSlider;
+    Ui::player ui;
+    FFPlayer m_ffplayer;
+    VPlayerSlider m_playerSlider;
+    QImage m_frame;
+    QString m_lastSource;
+    QString m_error;
+    FFPlayer::PlaybackState m_state = FFPlayer::Stopped;
+    qint64 m_position = 0;
+    qint64 m_duration = -1;
+    bool m_canSeek = false;
+    bool m_canRate = false;
+    bool m_capabilitiesKnown = false;
+    bool m_wasMaximized = false;
 };
